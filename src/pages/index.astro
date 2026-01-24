@@ -6,7 +6,7 @@ const SITE_TITLE = "Oficinas Comerciales de Lujo en Puembo | Venta y Alquiler";
 const SITE_DESCRIPTION =
     "Exclusivas oficinas, consultorios y locales comerciales en Puembo, Quito. Ubicación estratégica, diseño moderno y alta plusvalía. ¡Agenda tu visita!";
 const SITE_URL = "https://landing-locales.netlify.app"; // Placeholder URL
-const GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY";
+const GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY"; // TODO: Replace with your actual Google Maps API Key
 const GA_MEASUREMENT_ID = "GA_MEASUREMENT_ID";
 const META_PIXEL_ID = "META_PIXEL_ID";
 const TIKTOK_PIXEL_ID = "TIKTOK_PIXEL_ID";
@@ -29,7 +29,10 @@ const schema = {
         latitude: -0.1772,
         longitude: -78.3666,
     },
-    image: [`${SITE_URL}/images/hero.jpg`, `${SITE_URL}/images/interior.jpg`],
+    image: [
+        `${SITE_URL}/img/ready_picturew.webp`,
+        `${SITE_URL}/img/interior.webp`,
+    ],
 };
 ---
 
@@ -180,48 +183,48 @@ const schema = {
     <body class="font-sans antialiased text-gray-900 bg-white">
         <!-- Sticky Header -->
         <header
-            class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300"
+            class="sticky top-0 z-50 w-full border-b border-solid border-[#e7ebf3] bg-white/95 backdrop-blur-sm"
         >
             <div
-                class="container mx-auto px-4 h-20 flex items-center justify-between"
+                class="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between"
             >
-                <a
-                    href="#"
-                    class="text-2xl font-bold tracking-tight text-gray-900"
-                >
-                    PlazaComercial<span class="text-blue-900">Puembo</span>
-                </a>
-
-                <nav
-                    class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600"
-                >
+                <div class="flex items-center gap-3">
+                    <div class="text-primary">
+                        <svg
+                            class="size-8"
+                            fill="none"
+                            viewBox="0 0 48 48"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tight text-gray-900">
+                        Plaza Comercial Puembo
+                    </h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-10">
                     <a
-                        href="#inicio"
-                        class="hover:text-blue-900 transition-colors">Inicio</a
+                        class="text-sm font-medium hover:text-primary transition-colors text-gray-600"
+                        href="#ubicacion">Ubicación</a
                     >
                     <a
-                        href="#caracteristicas"
-                        class="hover:text-blue-900 transition-colors"
-                        >Características</a
+                        class="text-sm font-medium hover:text-primary transition-colors text-gray-600"
+                        href="#caracteristicas">Especificaciones</a
                     >
                     <a
-                        href="#ubicacion"
-                        class="hover:text-blue-900 transition-colors"
-                        >Ubicación</a
+                        class="text-sm font-medium hover:text-primary transition-colors text-gray-600"
+                        href="#contacto">Disponibilidad</a
                     >
+                    <a
+                        href={WHATSAPP_LINK}
+                        class="cta-whatsapp bg-primary text-white text-sm font-bold h-10 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                    >
+                        Contactar
+                    </a>
                 </nav>
-
-                <a
-                    href={WHATSAPP_LINK}
-                    class="cta-whatsapp bg-blue-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-blue-800 transition-all hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2"
-                >
-                    <span>Agendar Visita</span>
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"
-                        ><path
-                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.629 1.213 2.827c.149.198 2.095 3.2 5.076 4.487 2.082.899 2.903.968 3.962.793 1.059-.175 2.374-1.237 2.374-2.479 0-1.242-1.238-1.761-1.238-1.761z"
-                        ></path></svg
-                    >
-                </a>
             </div>
         </header>
 
@@ -234,7 +237,7 @@ const schema = {
                 <!-- Background with overlay -->
                 <div class="absolute inset-0 z-0">
                     <img
-                        src="public/img/ready_picturew.webp"
+                        src="/img/ready_picturew.webp"
                         alt="Oficinas de lujo en Puembo"
                         class="w-full h-full object-cover"
                     />
@@ -245,37 +248,25 @@ const schema = {
                 </div>
 
                 <div class="container mx-auto px-4 relative z-10 pt-20">
-                    <div class="max-w-2xl text-white">
-                        <span
-                            class="inline-block px-4 py-1.5 rounded-full bg-blue-900/50 backdrop-blur border border-blue-500/30 text-blue-200 text-sm font-semibold mb-6 tracking-wide uppercase"
-                        >
-                            Preventa Exclusiva
-                        </span>
+                    <div class="max-w-3xl text-white">
                         <h1
                             class="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight"
                         >
-                            Eleva tu Empresa en el Corazón de Puembo
+                            Local Comercial en Puembo - Desde $550 + IVA
                         </h1>
                         <p
                             class="text-xl text-gray-300 mb-10 leading-relaxed font-light"
                         >
-                            Espacios corporativos de alto nivel diseñados para
-                            potenciar tu productividad. Oficinas, consultorios y
-                            servicios exclusivos en la zona de mayor plusvalía
-                            de Quito.
+                            El espacio ideal para consolidar tu empresa cerca al
+                            parque central. Arquitectura moderna y alta
+                            plusvalía.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a
                                 href={WHATSAPP_LINK}
-                                class="cta-whatsapp inline-flex items-center justify-center bg-white text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg shadow-white/10"
+                                class="cta-whatsapp bg-primary text-white text-sm font-bold h-10 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
                             >
-                                Contactar Asesor
-                            </a>
-                            <a
-                                href="#caracteristicas"
-                                class="inline-flex items-center justify-center px-8 py-4 rounded-lg font-medium text-white border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm"
-                            >
-                                Ver Características
+                                Ver disponibilidad
                             </a>
                         </div>
                     </div>
@@ -289,10 +280,10 @@ const schema = {
                         <!-- Left: Gallery Grid -->
                         <div class="grid grid-cols-2 gap-4">
                             <div
-                                class="col-span-2 aspect-video rounded-2xl overflow-hidden shadow-2xl"
+                                class="col-span-2 aspect-video rounded-2xl overflow-hidden shadow-xl"
                             >
                                 <img
-                                    src="public/img/local 1.webp"
+                                    src="/img/local-1.webp"
                                     alt="Local Exterior"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                 />
@@ -301,7 +292,7 @@ const schema = {
                                 class="aspect-square rounded-2xl overflow-hidden shadow-lg"
                             >
                                 <img
-                                    src="public/img/interior.webp"
+                                    src="/img/interior.webp"
                                     alt="Interior del local"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                 />
@@ -310,7 +301,7 @@ const schema = {
                                 class="aspect-square rounded-2xl overflow-hidden shadow-lg"
                             >
                                 <img
-                                    src="public/img/map.webp"
+                                    src="/img/map.webp"
                                     alt="Ubicación"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                 />
@@ -333,52 +324,103 @@ const schema = {
                             </div>
 
                             <div class="grid gap-6">
-                                <!-- Card 1 -->
-                                <div
-                                    class="p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-colors group"
-                                >
-                                    <h3
-                                        class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900"
+                                <!-- Spec 1: Offices -->
+                                <div class="flex gap-4 items-start group">
+                                    <div
+                                        class="size-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"
                                     >
-                                        Oficinas Modulables
-                                    </h3>
-                                    <p class="text-sm text-gray-600">
-                                        Desde 45m² hasta plantas libres de
-                                        300m². Adaptables a consultorios médicos
-                                        o estudios jurídicos.
-                                    </p>
+                                        <svg
+                                            class="size-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3
+                                            class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
+                                        >
+                                            Oficinas Modulables
+                                        </h3>
+                                        <p class="text-gray-600">
+                                            Desde 45m² hasta plantas libres de
+                                            300m². Adaptables a consultorios
+                                            médicos o estudios jurídicos.
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <!-- Card 2 -->
-                                <div
-                                    class="p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-colors group"
-                                >
-                                    <h3
-                                        class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900"
+                                <!-- Spec 2: Community Areas -->
+                                <div class="flex gap-4 items-start group">
+                                    <div
+                                        class="size-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"
                                     >
-                                        Áreas Comunales
-                                    </h3>
-                                    <p class="text-sm text-gray-600">
-                                        Business Center equipado, auditorio para
-                                        50 personas y terraza lounge con vista
-                                        panorámica.
-                                    </p>
+                                        <svg
+                                            class="size-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3
+                                            class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
+                                        >
+                                            Áreas Comunales
+                                        </h3>
+                                        <p class="text-gray-600">
+                                            Business Center equipado, auditorio
+                                            para 50 personas y terraza lounge
+                                            con vista panorámica.
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <!-- Card 3 -->
-                                <div
-                                    class="p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-colors group"
-                                >
-                                    <h3
-                                        class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900"
+                                <!-- Spec 3: Tech & Security -->
+                                <div class="flex gap-4 items-start group">
+                                    <div
+                                        class="size-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"
                                     >
-                                        Tecnología y Seguridad
-                                    </h3>
-                                    <p class="text-sm text-gray-600">
-                                        Internet de fibra óptica de alta
-                                        velocidad, generador eléctrico al 100% y
-                                        seguridad 24/7 con CCTV.
-                                    </p>
+                                        <svg
+                                            class="size-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3
+                                            class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
+                                        >
+                                            Tecnología y Seguridad
+                                        </h3>
+                                        <p class="text-gray-600">
+                                            Internet de fibra óptica de alta
+                                            velocidad, generador eléctrico al
+                                            100% y seguridad 24/7 con CCTV.
+                                        </p>
+                                    </div>
                                 </div>
 
                                 <!-- Filters Note -->
@@ -400,12 +442,12 @@ const schema = {
             </section>
 
             <!-- Location Section -->
-            <section id="ubicacion" class="bg-gray-900 py-24 relative">
+            <section id="ubicacion" class="bg-slate-50 py-24 relative">
                 <div class="container mx-auto px-4 mb-12 text-center">
-                    <h2 class="text-3xl font-bold text-white mb-4">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">
                         Ubicación Estratégica
                     </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">
+                    <p class="text-gray-600 max-w-2xl mx-auto">
                         En el corazón de Puembo, a pocos minutos del Aeropuerto
                         Internacional Mariscal Sucre y con fácil acceso a la
                         Ruta Viva.
@@ -413,27 +455,25 @@ const schema = {
                 </div>
 
                 <!-- Map Container -->
-                <div
-                    id="map"
-                    class="w-full h-[500px] grayscale hover:grayscale-0 transition-all duration-500"
-                >
-                </div>
+                <div id="map" class="w-full h-[500px]"></div>
             </section>
 
             <!-- Lead / Value Prop Section -->
-            <section class="py-24 bg-blue-900 text-white text-center">
+            <section
+                class="py-24 bg-white text-center border-t border-gray-100"
+            >
                 <div class="container mx-auto px-4 max-w-4xl">
-                    <h2 class="text-4xl font-bold mb-6">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
                         Invierta en el Futuro Profesional de Quito
                     </h2>
-                    <p class="text-xl text-blue-100 mb-10 leading-relaxed">
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
                         No pierda la oportunidad de establecer su negocio en la
                         zona de mayor crecimiento y exclusividad. Últimas
                         unidades disponibles con precios de lanzamiento.
                     </p>
                     <a
                         href={WHATSAPP_LINK}
-                        class="cta-whatsapp inline-flex items-center gap-3 bg-green-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-green-400 transition-transform hover:scale-105 shadow-xl shadow-green-900/20"
+                        class="cta-whatsapp inline-flex items-center gap-3 bg-green-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-green-400 transition-transform hover:scale-105 shadow-lg"
                     >
                         <svg
                             class="w-6 h-6"
@@ -449,18 +489,16 @@ const schema = {
             </section>
         </main>
 
-        <footer
-            class="bg-gray-950 text-gray-400 py-12 border-t border-gray-800"
-        >
+        <footer class="bg-white text-gray-500 py-12 border-t border-gray-100">
             <div
                 class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
             >
                 <div class="text-center md:text-left">
                     <a
                         href="#"
-                        class="text-2xl font-bold tracking-tight text-white block mb-2"
+                        class="text-2xl font-bold tracking-tight text-gray-900 block mb-2"
                     >
-                        PUEMBO<span class="text-blue-500">PRIME</span>
+                        huvana<span class="text-blue-500">studio</span>
                     </a>
                     <p class="text-sm">
                         © {new Date().getFullYear()} Todos los derechos reservados.
@@ -469,7 +507,7 @@ const schema = {
                 <div class="flex gap-6">
                     <a
                         href="#"
-                        class="hover:text-white transition-colors"
+                        class="hover:text-primary transition-colors"
                         aria-label="Facebook"
                     >
                         <svg
@@ -483,7 +521,7 @@ const schema = {
                     </a>
                     <a
                         href="#"
-                        class="hover:text-white transition-colors"
+                        class="hover:text-primary transition-colors"
                         aria-label="Instagram"
                     >
                         <svg
@@ -509,23 +547,6 @@ const schema = {
                     {
                         zoom: 15,
                         center: puembo,
-                        styles: [
-                            {
-                                featureType: "all",
-                                elementType: "geometry",
-                                stylers: [{ color: "#242f3e" }],
-                            },
-                            {
-                                featureType: "all",
-                                elementType: "labels.text.stroke",
-                                stylers: [{ lightness: -80 }],
-                            },
-                            {
-                                featureType: "water",
-                                elementType: "geometry",
-                                stylers: [{ color: "#17263c" }],
-                            },
-                        ],
                     },
                 );
                 new google.maps.Marker({
