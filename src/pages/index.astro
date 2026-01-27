@@ -2,20 +2,22 @@
 import "../styles/global.css";
 
 // Configuration
-const SITE_TITLE = "Oficinas Comerciales de Lujo en Puembo | Venta y Alquiler";
+//      TO DO!:REFACTOR SITE TITLE ARE NOT OFFICES , IT IS LOCALES
+const SITE_TITLE =
+    "Locales comerciales en Arriendo en Puembo | Cerca del Parque Central";
 const SITE_DESCRIPTION =
-    "Exclusivas oficinas, consultorios y locales comerciales en Puembo, Quito. Ubicación estratégica, diseño moderno y alta plusvalía. ¡Agenda tu visita!";
+    "Locales comerciales de 60 m² en arriendo en Puembo, cerca del parque central, TuTi y Mi Comisariato. Espacios listos para tu negocio. Agenda una visita.";
 const SITE_URL = "https://landing-locales.netlify.app"; // Placeholder URL
-const GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY"; // TODO: Replace with your actual Google Maps API Key
+
 const GA_MEASUREMENT_ID = "GA_MEASUREMENT_ID";
 const META_PIXEL_ID = "META_PIXEL_ID";
 const TIKTOK_PIXEL_ID = "TIKTOK_PIXEL_ID";
-const WHATSAPP_LINK = "https://wa.me/593999999999"; // Placeholder WhatsApp
+const WHATSAPP_LINK = "https://wa.me/593995775686"; // Updated WhatsApp
 
 const schema = {
     "@context": "https://schema.org",
-    "@type": "RealEstateListing",
-    name: "Oficinas Comerciales Puembo",
+    "@type": "LocalBusiness",
+    name: "Plaza Comercial Puembo",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     address: {
@@ -26,14 +28,24 @@ const schema = {
     },
     geo: {
         "@type": "GeoCoordinates",
-        latitude: -0.1772,
-        longitude: -78.3666,
+        latitude: -0.1784554360455434,
+        longitude: -78.35922839796994,
     },
     image: [
         `${SITE_URL}/img/ready_picturew.webp`,
         `${SITE_URL}/img/interior.webp`,
     ],
 };
+
+const images = [
+    { src: "/img/4locales.webp", alt: "Facchadas locales" },
+    { src: "/img/bano.webp", alt: "Baños locales" },
+    { src: "/img/exth1.webp", alt: "fachada local con puerta" },
+    { src: "/img/extj.webp", alt: "fachada local con luz exterior" },
+    { src: "/img/interior.webp", alt: "Interior locales" },
+    { src: "/img/local-1.webp", alt: "Local En el dia" },
+    { src: "/img/map.webp", alt: "Como llegar" },
+];
 ---
 
 <!doctype html>
@@ -42,7 +54,20 @@ const schema = {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
         <meta name="generator" content={Astro.generator} />
+
+        <!-- Geo Tags -->
+        <meta name="geo.region" content="EC-P" />
+        <meta name="geo.placename" content="Puembo" />
+        <meta
+            name="geo.position"
+            content="-0.1784554360455434;-78.35922839796994"
+        />
+        <meta name="ICBM" content="-0.1784554360455434, -78.35922839796994" />
 
         <!-- SEO -->
         <title>{SITE_TITLE}</title>
@@ -56,13 +81,6 @@ const schema = {
         <meta property="og:title" content={SITE_TITLE} />
         <meta property="og:description" content={SITE_DESCRIPTION} />
         <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
-
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={SITE_URL} />
-        <meta property="twitter:title" content={SITE_TITLE} />
-        <meta property="twitter:description" content={SITE_DESCRIPTION} />
-        <meta property="twitter:image" content={`${SITE_URL}/og-image.jpg`} />
 
         <!-- JSON-LD Schema -->
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -216,10 +234,10 @@ const schema = {
                     >
                     <a
                         class="text-sm font-medium hover:text-primary transition-colors text-gray-600"
-                        href="#contacto">Disponibilidad</a
+                        href="#gallery">Galeria</a
                     >
                     <a
-                        href={WHATSAPP_LINK}
+                        href="#contacto"
                         class="cta-whatsapp bg-primary text-white text-sm font-bold h-10 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
                     >
                         Contactar
@@ -237,7 +255,7 @@ const schema = {
                 <!-- Background with overlay -->
                 <div class="absolute inset-0 z-0">
                     <img
-                        src="/img/ready_picturew.webp"
+                        src="/img/4locales.webp"
                         alt="Oficinas de lujo en Puembo"
                         class="w-full h-full object-cover"
                     />
@@ -252,7 +270,7 @@ const schema = {
                         <h1
                             class="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight"
                         >
-                            Local Comercial en Puembo - Desde $550 + IVA
+                            Local Comercial en Puembo - Desde $550
                         </h1>
                         <p
                             class="text-xl text-gray-300 mb-10 leading-relaxed font-light"
@@ -263,7 +281,7 @@ const schema = {
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a
-                                href={WHATSAPP_LINK}
+                                href="#contacto"
                                 class="cta-whatsapp bg-primary text-white text-sm font-bold h-10 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
                             >
                                 Ver disponibilidad
@@ -314,17 +332,22 @@ const schema = {
                                 <h2
                                     class="text-3xl font-bold text-gray-900 mb-4"
                                 >
-                                    Diseñado para la Excelencia
+                                    Donde tu negocio encuentra su lugar
                                 </h2>
                                 <p class="text-gray-600 leading-relaxed">
-                                    Nuestro edificio corporativo ofrece
-                                    infraestructura de primer nivel con
-                                    tecnología de punta y seguridad integral.
+                                    Ubicada en Puembo, a pocos pasos del parque
+                                    central, Plaza Comercial Puembo ofrece una
+                                    combinación equilibrada entre visibilidad,
+                                    exclusividad y funcionalidad. Un proyecto
+                                    moderno que responde tanto a negocios
+                                    comerciales como a oficinas profesionales
+                                    que buscan un entorno ordenado, seguro y
+                                    bien ubicado.
                                 </p>
                             </div>
 
                             <div class="grid gap-6">
-                                <!-- Spec 1: Offices -->
+                                <!-- Spec 1: Commercial property leasing -->
                                 <div class="flex gap-4 items-start group">
                                     <div
                                         class="size-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"
@@ -347,12 +370,29 @@ const schema = {
                                         <h3
                                             class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
                                         >
-                                            Oficinas Modulables
+                                            Locales comerciales en arriendo
                                         </h3>
                                         <p class="text-gray-600">
-                                            Desde 45m² hasta plantas libres de
-                                            300m². Adaptables a consultorios
-                                            médicos o estudios jurídicos.
+                                            Espacios diseñados para adaptarse a
+                                            diferentes modelos de negocio.
+                                            <ul
+                                                class="list-disc list-inside space-y-2"
+                                            >
+                                                <li>Cada local cuenta con:</li>
+                                                <li>60 m² desuperficie</li>
+                                                <li>
+                                                    Baño privado con lavamanos e
+                                                    inodoro
+                                                </li>
+                                                <li>
+                                                    Distribución funcional y
+                                                    adaptable
+                                                </li>
+                                                <li>
+                                                    Imagen moderna, ideal para
+                                                    tu negocio.
+                                                </li>
+                                            </ul>
                                         </p>
                                     </div>
                                 </div>
@@ -380,17 +420,33 @@ const schema = {
                                         <h3
                                             class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
                                         >
-                                            Áreas Comunales
+                                            Espacios Comunales
                                         </h3>
                                         <p class="text-gray-600">
-                                            Business Center equipado, auditorio
-                                            para 50 personas y terraza lounge
-                                            con vista panorámica.
+                                            Diseño moderno y minimalista para
+                                            ofrecer comodidad y tranquilidad.
+                                            <ul
+                                                class="list-disc list-inside space-y-2"
+                                            >
+                                                <li>
+                                                    10 parqueaderos para uso
+                                                    común
+                                                </li>
+                                                <li>
+                                                    Sistema de cámaras de
+                                                    seguridad
+                                                </li>
+                                                <li>
+                                                    Infraestructura preparada
+                                                    para un funcionamiento
+                                                    continuo
+                                                </li>
+                                            </ul>
                                         </p>
                                     </div>
                                 </div>
 
-                                <!-- Spec 3: Tech & Security -->
+                                <!-- Spec 3: strategic location -->
                                 <div class="flex gap-4 items-start group">
                                     <div
                                         class="size-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"
@@ -413,29 +469,92 @@ const schema = {
                                         <h3
                                             class="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-900 transition-colors"
                                         >
-                                            Tecnología y Seguridad
+                                            Ubicación estratégica
                                         </h3>
                                         <p class="text-gray-600">
-                                            Internet de fibra óptica de alta
-                                            velocidad, generador eléctrico al
-                                            100% y seguridad 24/7 con CCTV.
+                                            Puembo es una zona de crecimiento
+                                            sostenido, con alta proyección
+                                            comercial y un entorno urbano
+                                            consolidado. La cercanía al parque
+                                            central aporta flujo, visibilidad y
+                                            un contexto atractivo para negocios
+                                            y oficinas por igual.
                                         </p>
                                     </div>
                                 </div>
 
                                 <!-- Filters Note -->
-                                <div
-                                    class="mt-4 p-4 rounded-lg bg-yellow-50 text-yellow-800 text-sm border-l-4 border-yellow-400"
-                                >
-                                    <strong>Ideal para:</strong> Oficinas corporativas,
-                                    consultorios médicos, bufetes de abogados y empresas
-                                    de servicios profesionales.
-                                    <span class="block mt-1 text-xs opacity-75"
-                                        >* No apto para restaurantes o comercio
-                                        informal.</span
-                                    >
+                                <div>
+                                    <!-- To be used when filters are implemented Ex: apto para consultorios médicos, bufetes de abogados y empresas de servicios profesionales. * No apto para restaurantes o comercio informal. -->
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Gallery Slider -->
+            <section class="py-12 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <div
+                        class="relative group max-w-[1200px] mx-auto rounded-2xl shadow-2xl overflow-hidden aspect-video md:aspect-[21/9]"
+                    >
+                        <!-- Slider Track -->
+                        <div
+                            id="gallery"
+                            class="flex transition-transform duration-700 ease-in-out h-full"
+                        >
+                            {
+                                images.map((img) => (
+                                    <div class="min-w-full h-full relative">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            class="w-full h-full object-cover"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                            <p class="text-white text-lg font-medium">
+                                                {img.alt}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <!-- Manual Controls -->
+                        <button
+                            id="prev-slide"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/90 text-white hover:text-gray-900 p-3 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100"
+                            aria-label="Anterior"
+                        >
+                            <span class="material-symbols-outlined"
+                                >chevron_left</span
+                            >
+                        </button>
+                        <button
+                            id="next-slide"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/90 text-white hover:text-gray-900 p-3 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100"
+                            aria-label="Siguiente"
+                        >
+                            <span class="material-symbols-outlined"
+                                >chevron_right</span
+                            >
+                        </button>
+
+                        <!-- Indicators -->
+                        <div
+                            class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
+                        >
+                            {
+                                images.map((_, index) => (
+                                    <button
+                                        class="slider-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"
+                                        data-index={index}
+                                        aria-label={`Ir a slide ${index + 1}`}
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -450,169 +569,434 @@ const schema = {
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         En el corazón de Puembo, a pocos minutos del Aeropuerto
                         Internacional Mariscal Sucre y con fácil acceso a la
-                        Ruta Viva.
+                        Ruta Viva y conector Alpachaca.
                     </p>
                 </div>
 
                 <!-- Map Container -->
-                <div id="map" class="w-full h-[500px]"></div>
+
+                <div
+                    class="w-full h-[500px] bg-slate-100 rounded-lg overflow-hidden shadow-sm"
+                >
+                    <iframe
+                        src="https://maps.google.com/maps?q=-0.1784554360455434,-78.35922839796994&hl=es&z=15&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación de Plaza Comercial Puembo"
+                        aria-label="Mapa mostrando la ubicación de Plaza Comercial Puembo en Puembo, Ecuador"
+                    ></iframe>
+                </div>
             </section>
 
-            <!-- Lead / Value Prop Section -->
-            <section
-                class="py-24 bg-white text-center border-t border-gray-100"
-            >
-                <div class="container mx-auto px-4 max-w-4xl">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
-                        Invierta en el Futuro Profesional de Quito
-                    </h2>
-                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
-                        No pierda la oportunidad de establecer su negocio en la
-                        zona de mayor crecimiento y exclusividad. Últimas
-                        unidades disponibles con precios de lanzamiento.
-                    </p>
-                    <a
-                        href={WHATSAPP_LINK}
-                        class="cta-whatsapp inline-flex items-center gap-3 bg-green-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-green-400 transition-transform hover:scale-105 shadow-lg"
+            <!-- Lead Capture Form Section -->
+            <section class="max-w-[1200px] mx-auto px-6 py-20" id="contacto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+                            Tu negocio puede estar aquí
+                        </h2>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Si estás buscando un local bien ubicado, completa el
+                            formulario y agenda una visita personalizada.
+                        </p>
+                        <ul class="space-y-4">
+                            <li
+                                class="flex items-center gap-3 font-medium text-gray-700"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-green-500"
+                                    >check_circle</span
+                                >
+                                Déjanos tus datos y recibe información detallada del
+                                proyecto.
+                            </li>
+                            <li
+                                class="flex items-center gap-3 font-medium text-gray-700"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-green-500"
+                                    >check_circle</span
+                                >
+                                Nos pondremos en contacto contigo para coordinar una
+                                visita.
+                            </li>
+                            <li
+                                class="flex items-center gap-3 font-medium text-gray-700"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-green-500"
+                                    >check_circle</span
+                                >
+                                Espacios Limitados.
+                            </li>
+                        </ul>
+                    </div>
+                    <!--.........................Lead Filter Form.................................. -->
+                    <div
+                        class="bg-white p-10 rounded-2xl shadow-2xl border border-gray-100"
                     >
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            ><path
-                                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.629 1.213 2.827c.149.198 2.095 3.2 5.076 4.487 2.082.899 2.903.968 3.962.793 1.059-.175 2.374-1.237 2.374-2.479 0-1.242-1.238-1.761-1.238-1.761z"
-                            ></path></svg
-                        >
-                        Solicitar Más Información
-                    </a>
+                        <form class="space-y-6" method="POST">
+                            <div>
+                                <label
+                                    for="company"
+                                    class="block text-sm font-semibold mb-2 text-gray-900"
+                                    >Nombre del Negocio</label
+                                >
+                                <input
+                                    id="company"
+                                    name="company"
+                                    type="text"
+                                    maxlength="80"
+                                    minlength="3"
+                                    required
+                                    aria-required="true"
+                                    class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
+                                    placeholder="Ej. Soluciones Digitales S.A."
+                                />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        for="business_type"
+                                        class="block text-sm font-semibold mb-2 text-gray-900"
+                                        >Giro de Negocio</label
+                                    >
+                                    <select
+                                        id="business_type"
+                                        name="business_type"
+                                        class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
+                                    >
+                                        <option value="" disabled selected
+                                            >Selecciona tu giro</option
+                                        >
+                                        <option value="Alimentos y bebidas"
+                                            >Minimarket, Supermercado
+                                        </option>
+                                        <option
+                                            value="Restaurantes, cafeterías y bares"
+                                            >Restaurantes, cafeterías y bares</option
+                                        >
+                                        <option value="Moda, ropa y accesorios"
+                                            >Moda, ropa y accesorios, Calzado,
+                                            joyería</option
+                                        >
+                                        <option
+                                            value="Calzado, joyería y marroquinería"
+                                            >Mascotas y veterinarias</option
+                                        >
+                                        <option
+                                            value="Belleza, estética y cuidado personal"
+                                            >Belleza, estética y cuidado
+                                            personal</option
+                                        >
+                                        <option value="Salud y bienestar"
+                                            >Salud y bienestar</option
+                                        >
+                                        <option
+                                            value="Fitness, deporte y gimnasios"
+                                            >Fitness, deporte y gimnasios</option
+                                        >
+                                        <option
+                                            value="Tecnología, informática y electrónica"
+                                            >Tecnología, informática y
+                                            electrónica</option
+                                        >
+
+                                        <option
+                                            value="Comercio minorista general"
+                                            >Comercio minorista general</option
+                                        >
+                                        <option
+                                            value="Ferretería, construcción y materiales"
+                                            >Ferretería, construcción y
+                                            materiales</option
+                                        >
+                                        <option
+                                            value="Hogar, decoración y muebles"
+                                            >Hogar, decoración y muebles</option
+                                        >
+                                        <option value="Automotriz y repuestos"
+                                            >Automotriz y repuestos</option
+                                        >
+                                        <option
+                                            value="Papelería, librería y regalos"
+                                            >Papelería, librería y regalos</option
+                                        >
+                                        <option
+                                            value="Turismo, hoteles y agencias de viaje"
+                                            >Turismo, hoteles y agencias de
+                                            viaje</option
+                                        >
+                                        <option
+                                            value="Educación, capacitación y academias"
+                                            >Educación, capacitación y academias</option
+                                        >
+                                        <option
+                                            value="Logística, mensajería y courier"
+                                            >Logística, mensajería y courier</option
+                                        >
+                                        <option
+                                            value="Servicios profesionales y oficinas"
+                                            >Servicios profesionales y oficinas</option
+                                        >
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        for="budget"
+                                        class="block text-sm font-semibold mb-2 text-gray-900"
+                                        >Presupuesto Mensual</label
+                                    >
+                                    <select
+                                        id="budget"
+                                        name="budget"
+                                        class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
+                                    >
+                                        <option value="Menor a 550"
+                                            >Menor a $550</option
+                                        >
+                                        <option value="550-700"
+                                            >$550-$700</option
+                                        >
+                                        <option value="Mayor a 1000"
+                                            >Mayor a $1000</option
+                                        >
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label
+                                    for="whatsapp"
+                                    class="block text-sm font-semibold mb-2 text-gray-900"
+                                    >Numero de Contacto</label
+                                >
+                                <input
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    type="tel"
+                                    inputmode="numeric"
+                                    required
+                                    aria-required="true"
+                                    pattern="[0-9]{10}"
+                                    minlength="10"
+                                    maxlength="10"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+                                    title="Debe ingresar exactamente 10 números"
+                                    class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
+                                    placeholder="0999999999"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                class="w-full h-14 bg-primary text-white text-lg font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-primary/20"
+                            >
+                                Agenda tu Visita
+                            </button>
+                            <p class="text-center text-xs text-gray-500">
+                                Respondemos en menos de 24 horas hábiles.
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>
 
-        <footer class="bg-white text-gray-500 py-12 border-t border-gray-100">
+        <footer class="bg-gray-50 py-12 border-t border-gray-200">
             <div
-                class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
+                class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
             >
-                <div class="text-center md:text-left">
-                    <a
-                        href="#"
-                        class="text-2xl font-bold tracking-tight text-gray-900 block mb-2"
+                <!--   <div class="flex items-center gap-2">
+                    <span
+                        class="text-primary font-bold text-xl uppercase tracking-widest"
+                        >HuvanaStudio</span
                     >
-                        huvana<span class="text-blue-500">studio</span>
-                    </a>
-                    <p class="text-sm">
-                        © {new Date().getFullYear()} Todos los derechos reservados.
-                    </p>
-                </div>
-                <div class="flex gap-6">
-                    <a
-                        href="#"
-                        class="hover:text-primary transition-colors"
-                        aria-label="Facebook"
-                    >
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            ><path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                            ></path></svg
-                        >
-                    </a>
-                    <a
-                        href="#"
-                        class="hover:text-primary transition-colors"
-                        aria-label="Instagram"
-                    >
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            ><path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                            ></path></svg
-                        >
-                    </a>
-                </div>
+
+                    <a href="mailto:livefixec@gmail.com">livefixec@gmail.com</a>
+                </div> -->
             </div>
         </footer>
-
-        <!-- Google Maps -->
-        <script is:inline define:vars={{ GOOGLE_MAPS_API_KEY }}>
-            function initMap() {
-                if (typeof google === "undefined") return;
-                const puembo = { lat: -0.1772, lng: -78.3666 };
-                const map = new google.maps.Map(
-                    document.getElementById("map"),
-                    {
-                        zoom: 15,
-                        center: puembo,
-                    },
-                );
-                new google.maps.Marker({
-                    position: puembo,
-                    map: map,
-                    title: "Plaza Comercial Puembo",
-                });
-            }
-            window.initMap = initMap;
-        </script>
-        <script
-            async
-            defer
-            src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=initMap`}
-        ></script>
-
-        <!-- Custom Tracking Logic & Interactions -->
-        <script is:inline>
-            // Header Scroll Effect
-            const header = document.querySelector("header");
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 50) {
-                    header.classList.add("shadow-md");
-                } else {
-                    header.classList.remove("shadow-md");
-                }
-            });
-
-            // Scroll Tracking (50%)
-            let scrollTracked = false;
-            window.addEventListener("scroll", () => {
-                if (!scrollTracked) {
-                    const scrollPercent =
-                        ((window.scrollY + window.innerHeight) /
-                            document.documentElement.scrollHeight) *
-                        100;
-                    if (scrollPercent >= 50) {
-                        scrollTracked = true;
-                        if (typeof gtag === "function") {
-                            gtag("event", "scroll_50_percent", {
-                                event_category: "Engagement",
-                                event_label: "Scrolled 50%",
-                            });
-                        }
-                    }
-                }
-            });
-
-            // WhatsApp Click Tracking
-            document.querySelectorAll(".cta-whatsapp").forEach((button) => {
-                button.addEventListener("click", () => {
-                    if (typeof gtag === "function") {
-                        gtag("event", "conversion", {
-                            send_to: "AW-CONVERSION_ID/LABEL",
-                            event_category: "Lead",
-                            event_label: "WhatsApp Click",
-                        });
-                    }
-                    if (typeof fbq === "function") {
-                        fbq("track", "Contact");
-                    }
-                    if (typeof ttq === "function") {
-                        ttq.track("ClickButton");
-                    }
-                });
-            });
-        </script>
+        <div class="text-sm text-gray-500 text-center">
+            © {new Date().getFullYear()} Desarrollado por HuvanaStudio. Todos los
+            derechos reservados.<br />
+            Quito, Ecuador.<br />
+            <a href="mailto:livefixec@gmail.com">livefixec@gmail.com</a>
+        </div>
+        <div class="flex gap-6">
+            <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+                aria-label="Instagram"
+            >
+                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"
+                    ><path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                    ></path></svg
+                >
+            </a>
+        </div>
     </body>
 </html>
+
+<!-- Custom Tracking Logic & Interactions -->
+<script is:inline>
+    // Header Scroll Effect
+    const header = document.querySelector("header");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            header.classList.add("shadow-md");
+        } else {
+            header.classList.remove("shadow-md");
+        }
+    });
+
+    // Scroll Tracking (50%)
+    let scrollTracked = false;
+    window.addEventListener("scroll", () => {
+        if (!scrollTracked) {
+            const scrollPercent =
+                ((window.scrollY + window.innerHeight) /
+                    document.documentElement.scrollHeight) *
+                100;
+            if (scrollPercent >= 50) {
+                scrollTracked = true;
+                if (typeof gtag === "function") {
+                    gtag("event", "scroll_50_percent", {
+                        event_category: "Engagement",
+                        event_label: "Scrolled 50%",
+                    });
+                }
+            }
+        }
+    });
+
+    // WhatsApp Click Tracking
+    document.querySelectorAll(".cta-whatsapp").forEach((button) => {
+        button.addEventListener("click", () => {
+            if (typeof gtag === "function") {
+                gtag("event", "conversion", {
+                    send_to: "AW-CONVERSION_ID/LABEL",
+                    event_category: "Lead",
+                    event_label: "WhatsApp Click",
+                });
+            }
+            if (typeof fbq === "function") {
+                fbq("track", "Contact");
+            }
+            if (typeof ttq === "function") {
+                ttq.track("ClickButton");
+            }
+        });
+    });
+
+    // Form Submission Logic
+    const form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const budget = document.getElementById("budget").value;
+
+            // Check budget constraint
+            if (budget === "Menor a 550") {
+                alert(
+                    "Gracias por tu interés, te informaremos cuando tengamos un espacio acorde a tu presupuesto.",
+                );
+                return;
+            }
+
+            // If budget allows, construct WhatsApp message
+            const company = document.getElementById("company").value;
+            const businessType = document.getElementById("business_type").value;
+            const whatsapp = document.getElementById("whatsapp").value;
+
+            const message =
+                `Hola, quiero agendar una visita.%0A` +
+                `🏢 Negocio: ${company}%0A` +
+                `💼 Giro: ${businessType}%0A` +
+                `💰 Presupuesto: ${budget}%0A` +
+                `📞 Contacto: ${whatsapp}`;
+
+            const phoneNumber = "593995775686";
+            window.open(
+                `https://wa.me/${phoneNumber}?text=${message}`,
+                "_blank",
+            );
+        });
+    }
+</script>
+<script is:inline>
+    // Gallery Slider Logic
+    const track = document.getElementById("slider-track");
+    const prevBtn = document.getElementById("prev-slide");
+    const nextBtn = document.getElementById("next-slide");
+    const dots = document.querySelectorAll(".slider-dot");
+    let currentIndex = 0;
+    const totalSlides = dots.length;
+    const intervalTime = 4000;
+    let autoSlideInterval;
+
+    function updateSlide() {
+        const translateX = -(currentIndex * 100);
+        track.style.transform = `translateX(${translateX}%)`;
+
+        // Update dots
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.remove("bg-white/50");
+                dot.classList.add("bg-white", "scale-125");
+            } else {
+                dot.classList.add("bg-white/50");
+                dot.classList.remove("bg-white", "scale-125");
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlide();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlide();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlide();
+        resetTimer();
+    }
+
+    function resetTimer() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    // Event Listeners
+    if (track && prevBtn && nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        dots.forEach((dot) => {
+            dot.addEventListener("click", (e) => {
+                const index = parseInt(e.target.dataset.index);
+                goToSlide(index);
+            });
+        });
+
+        // Initialize
+        updateSlide();
+        resetTimer();
+    }
+</script>
