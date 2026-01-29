@@ -9,7 +9,7 @@ export function initFormValidation() {
     const submitBtn = form.querySelector('button[type="submit"]');
 
     // DEBUG MODE - Set to false in production
-    const DEBUG_MODE = true;
+    const DEBUG_MODE = false;
 
     form.addEventListener("submit", (e) => {
         // Stop default immediately to control the flow
@@ -54,12 +54,20 @@ export function initFormValidation() {
         // 👮 Security Check: Anti-XSS and Strict Character Validation
         // This pattern blocks potential scripts and excessive special characters
         const scriptPattern = /<script\b[^>]*>([\s\S]*?)<\/script>|on\w+\s*=|javascript:/gi;
-        const suspiciousChars = /[<>"{}[\]\\^`|]/g; // Block common XSS chars in name
+        const suspiciousChars = /[<>"{}[\]\\^`|]/g; // Block common XSS chars
 
-        if (scriptPattern.test(company) || suspiciousChars.test(company)) {
-            alert("El nombre contiene caracteres no permitidos por seguridad.");
-            companyInput.focus();
-            return;
+        // Validate all textual inputs for security
+        const textualInputs = [
+            { field: company, element: companyInput },
+            { field: whatsapp, element: whatsappInput }
+        ];
+
+        for (const input of textualInputs) {
+            if (scriptPattern.test(input.field) || suspiciousChars.test(input.field)) {
+                alert("El contenido ingresado contiene caracteres no permitidos por seguridad.");
+                input.element.focus();
+                return;
+            }
         }
 
         // 👮 Double Check: Ensure values are not empty

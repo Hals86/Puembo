@@ -10,6 +10,10 @@ const SITE_URL = "https://landing-locales.netlify.app";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com https://maps.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://analytics.tiktok.com https://connect.facebook.net;"
+        />
         <title>{SITE_TITLE}</title>
         <meta name="robots" content="noindex, follow" />
     </head>

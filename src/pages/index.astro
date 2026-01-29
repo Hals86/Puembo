@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
+import heroImage from "../../public/img/4locales.webp";
+import local1Image from "../../public/img/local-1.webp";
 
 // Configuration
 //      TO DO!:REFACTOR SITE TITLE ARE NOT OFFICES , IT IS LOCALES
@@ -53,6 +56,10 @@ const images = [
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com https://maps.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://analytics.tiktok.com https://connect.facebook.net;"
+        />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link
             rel="stylesheet"
@@ -141,12 +148,14 @@ const images = [
             >
                 <!-- Background with overlay -->
                 <div class="absolute inset-0 z-0">
-                    <img
-                        src="/img/4locales.webp"
+                    <Image
+                        src={heroImage}
                         alt="Locales comerciales de lujo en Puembo"
                         class="w-full h-full object-cover"
                         loading="eager"
                         fetchpriority="high"
+                        widths={[400, 800, 1200, heroImage.width]}
+                        sizes="(max-width: 800px) 100vw, 800px"
                     />
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-transparent"
@@ -189,11 +198,13 @@ const images = [
                             <div
                                 class="col-span-2 aspect-video rounded-2xl overflow-hidden shadow-xl"
                             >
-                                <img
-                                    src="/img/local-1.webp"
+                                <Image
+                                    src={local1Image}
                                     alt="Local Exterior"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                     loading="lazy"
+                                    widths={[400, 800, local1Image.width]}
+                                    sizes="(max-width: 800px) 100vw, 400px"
                                 />
                             </div>
                             <div
