@@ -7,12 +7,14 @@ const SITE_TITLE =
     "Locales comerciales en Arriendo en Puembo | Cerca del Parque Central";
 const SITE_DESCRIPTION =
     "Locales comerciales de 60 m² en arriendo en Puembo, cerca del parque central, TuTi y Mi Comisariato. Espacios listos para tu negocio. Agenda una visita.";
-const SITE_URL = "https://landing-locales.netlify.app"; // Placeholder URL
 
-const GA_MEASUREMENT_ID = "GA_MEASUREMENT_ID";
-const META_PIXEL_ID = "META_PIXEL_ID";
-const TIKTOK_PIXEL_ID = "TIKTOK_PIXEL_ID";
-const WHATSAPP_LINK = "https://wa.me/593995775686"; // Updated WhatsApp
+// Environment Variables
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA4_ID;
+const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+const TIKTOK_PIXEL_ID = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
+const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
+const SITE_URL = "https://landing-locales.netlify.app"; // Still a constant or could be env
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const schema = {
     "@context": "https://schema.org",
@@ -385,8 +387,7 @@ const images = [
                                                     inodoro
                                                 </li>
                                                 <li>
-                                                    Distribución funcional y
-                                                    adaptable
+                                                    Medidores independientes.
                                                 </li>
                                                 <li>
                                                     Imagen moderna, ideal para
@@ -434,7 +435,7 @@ const images = [
                                                 </li>
                                                 <li>
                                                     Sistema de cámaras de
-                                                    seguridad
+                                                    seguridad*
                                                 </li>
                                                 <li>
                                                     Infraestructura preparada
@@ -494,14 +495,14 @@ const images = [
             </section>
 
             <!-- Image Gallery Slider -->
-            <section class="py-12 bg-gray-50">
+            <section id="gallery" class="py-12 bg-gray-50">
                 <div class="container mx-auto px-4">
                     <div
                         class="relative group max-w-[1200px] mx-auto rounded-2xl shadow-2xl overflow-hidden aspect-video md:aspect-[21/9]"
                     >
                         <!-- Slider Track -->
                         <div
-                            id="gallery"
+                            id="gallery-track"
                             class="flex transition-transform duration-700 ease-in-out h-full"
                         >
                             {
@@ -669,6 +670,7 @@ const images = [
                                         id="business_type"
                                         name="business_type"
                                         class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
+                                        required
                                     >
                                         <option value="" disabled selected
                                             >Selecciona tu giro</option
@@ -781,11 +783,11 @@ const images = [
                                     inputmode="numeric"
                                     required
                                     aria-required="true"
-                                    pattern="[0-9]{10}"
+                                    pattern="09[0-9]{8}"
                                     minlength="10"
                                     maxlength="10"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-                                    title="Debe ingresar exactamente 10 números"
+                                    title="Debe empezar con 09 y tener exactamente 10 números"
                                     class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
                                     placeholder="0999999999"
                                 />
@@ -809,14 +811,12 @@ const images = [
             <div
                 class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
             >
-                <!--   <div class="flex items-center gap-2">
-                    <span
-                        class="text-primary font-bold text-xl uppercase tracking-widest"
-                        >HuvanaStudio</span
+                <div class="flex items-center gap-2">
+                    <span class="text-primary font-bold text-xs tracking-widest"
+                        >* El sistema de videovigilancia se implementara
+                        proximamente</span
                     >
-
-                    <a href="mailto:livefixec@gmail.com">livefixec@gmail.com</a>
-                </div> -->
+                </div>
             </div>
         </footer>
         <div class="text-sm text-gray-500 text-center">
@@ -838,165 +838,18 @@ const images = [
                 >
             </a>
         </div>
+        <!-- Modular Scripts -->
+        <script>
+            import { initGallerySlider } from "../scripts/gallerySlider.js";
+            import { initScrollTracking } from "../scripts/scrollTracking.js";
+            import { initTracking } from "../scripts/tracking.js";
+            import { initFormValidation } from "../scripts/formValidation.js";
+
+            // Initialize modules
+            initGallerySlider();
+            initScrollTracking();
+            initTracking();
+            initFormValidation();
+        </script>
     </body>
 </html>
-
-<!-- Custom Tracking Logic & Interactions -->
-<script is:inline>
-    // Header Scroll Effect
-    const header = document.querySelector("header");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("shadow-md");
-        } else {
-            header.classList.remove("shadow-md");
-        }
-    });
-
-    // Scroll Tracking (50%)
-    let scrollTracked = false;
-    window.addEventListener("scroll", () => {
-        if (!scrollTracked) {
-            const scrollPercent =
-                ((window.scrollY + window.innerHeight) /
-                    document.documentElement.scrollHeight) *
-                100;
-            if (scrollPercent >= 50) {
-                scrollTracked = true;
-                if (typeof gtag === "function") {
-                    gtag("event", "scroll_50_percent", {
-                        event_category: "Engagement",
-                        event_label: "Scrolled 50%",
-                    });
-                }
-            }
-        }
-    });
-
-    // WhatsApp Click Tracking
-    document.querySelectorAll(".cta-whatsapp").forEach((button) => {
-        button.addEventListener("click", () => {
-            if (typeof gtag === "function") {
-                gtag("event", "conversion", {
-                    send_to: "AW-CONVERSION_ID/LABEL",
-                    event_category: "Lead",
-                    event_label: "WhatsApp Click",
-                });
-            }
-            if (typeof fbq === "function") {
-                fbq("track", "Contact");
-            }
-            if (typeof ttq === "function") {
-                ttq.track("ClickButton");
-            }
-        });
-    });
-
-    // Form Submission Logic
-    const form = document.querySelector("form");
-    if (form) {
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const budget = document.getElementById("budget").value;
-
-            // Check budget constraint
-            if (budget === "Menor a 550") {
-                alert(
-                    "Gracias por tu interés, te informaremos cuando tengamos un espacio acorde a tu presupuesto.",
-                );
-                return;
-            }
-
-            // If budget allows, construct WhatsApp message
-            const company = document.getElementById("company").value;
-            const businessType = document.getElementById("business_type").value;
-            const whatsapp = document.getElementById("whatsapp").value;
-
-            const message =
-                `Hola, quiero agendar una visita.%0A` +
-                `🏢 Negocio: ${company}%0A` +
-                `💼 Giro: ${businessType}%0A` +
-                `💰 Presupuesto: ${budget}%0A` +
-                `📞 Contacto: ${whatsapp}`;
-
-            const phoneNumber = "593995775686";
-            window.open(
-                `https://wa.me/${phoneNumber}?text=${message}`,
-                "_blank",
-            );
-        });
-    }
-</script>
-<script is:inline>
-    // Gallery Slider Logic
-    const track = document.getElementById("slider-track");
-    const prevBtn = document.getElementById("prev-slide");
-    const nextBtn = document.getElementById("next-slide");
-    const dots = document.querySelectorAll(".slider-dot");
-    let currentIndex = 0;
-    const totalSlides = dots.length;
-    const intervalTime = 4000;
-    let autoSlideInterval;
-
-    function updateSlide() {
-        const translateX = -(currentIndex * 100);
-        track.style.transform = `translateX(${translateX}%)`;
-
-        // Update dots
-        dots.forEach((dot, index) => {
-            if (index === currentIndex) {
-                dot.classList.remove("bg-white/50");
-                dot.classList.add("bg-white", "scale-125");
-            } else {
-                dot.classList.add("bg-white/50");
-                dot.classList.remove("bg-white", "scale-125");
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlide();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlide();
-    }
-
-    function goToSlide(index) {
-        currentIndex = index;
-        updateSlide();
-        resetTimer();
-    }
-
-    function resetTimer() {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(nextSlide, intervalTime);
-    }
-
-    // Event Listeners
-    if (track && prevBtn && nextBtn) {
-        nextBtn.addEventListener("click", () => {
-            nextSlide();
-            resetTimer();
-        });
-
-        prevBtn.addEventListener("click", () => {
-            prevSlide();
-            resetTimer();
-        });
-
-        dots.forEach((dot) => {
-            dot.addEventListener("click", (e) => {
-                const index = parseInt(e.target.dataset.index);
-                goToSlide(index);
-            });
-        });
-
-        // Initialize
-        updateSlide();
-        resetTimer();
-    }
-</script>
