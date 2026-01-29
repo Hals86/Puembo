@@ -9,9 +9,6 @@ const SITE_DESCRIPTION =
     "Locales comerciales de 60 m² en arriendo en Puembo, cerca del parque central, TuTi y Mi Comisariato. Espacios listos para tu negocio. Agenda una visita.";
 
 // Environment Variables
-const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA4_ID;
-const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
-const TIKTOK_PIXEL_ID = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
 const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 const SITE_URL = "https://landing-locales.netlify.app"; // Still a constant or could be env
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -22,6 +19,10 @@ const schema = {
     name: "Plaza Comercial Puembo",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
+    image: [
+        `${SITE_URL}/img/ready_picturew.webp`,
+        `${SITE_URL}/img/interior.webp`,
+    ],
     address: {
         "@type": "PostalAddress",
         addressLocality: "Puembo",
@@ -33,10 +34,7 @@ const schema = {
         latitude: -0.1784554360455434,
         longitude: -78.35922839796994,
     },
-    image: [
-        `${SITE_URL}/img/ready_picturew.webp`,
-        `${SITE_URL}/img/interior.webp`,
-    ],
+    priceRange: "$550+",
 };
 
 const images = [
@@ -82,123 +80,10 @@ const images = [
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:title" content={SITE_TITLE} />
         <meta property="og:description" content={SITE_DESCRIPTION} />
-        <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
+        <meta property="og:image" content={`${SITE_URL}/img/4locales.webp`} />
 
         <!-- JSON-LD Schema -->
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-        <!-- Analytics: Google Analytics 4 -->
-        <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        ></script>
-        <script define:vars={{ GA_MEASUREMENT_ID }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", GA_MEASUREMENT_ID);
-        </script>
-
-        <!-- Analytics: Meta Pixel -->
-        <script define:vars={{ META_PIXEL_ID }}>
-            !(function (f, b, e, v, n, t, s) {
-                if (f.fbq) return;
-                n = f.fbq = function () {
-                    n.callMethod
-                        ? n.callMethod.apply(n, arguments)
-                        : n.queue.push(arguments);
-                };
-                if (!f._fbq) f._fbq = n;
-                n.push = n;
-                n.loaded = !0;
-                n.version = "2.0";
-                n.queue = [];
-                t = b.createElement(e);
-                t.async = !0;
-                t.src = v;
-                s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s);
-            })(
-                window,
-                document,
-                "script",
-                "https://connect.facebook.net/en_US/fbevents.js",
-            );
-            fbq("init", META_PIXEL_ID);
-            fbq("track", "PageView");
-        </script>
-        <noscript
-            ><img
-                height="1"
-                width="1"
-                style="display:none"
-                src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-            /></noscript
-        >
-
-        <!-- Analytics: TikTok Pixel -->
-        <script define:vars={{ TIKTOK_PIXEL_ID }}>
-            !(function (w, d, t) {
-                w.TiktokAnalyticsObject = t;
-                var ttq = (w[t] = w[t] || []);
-                ((ttq.methods = [
-                    "page",
-                    "track",
-                    "identify",
-                    "instances",
-                    "debug",
-                    "on",
-                    "off",
-                    "once",
-                    "ready",
-                    "alias",
-                    "group",
-                    "enableCookie",
-                    "disableCookie",
-                ]),
-                    (ttq.setAndDefer = function (t, e) {
-                        t[e] = function () {
-                            t.push(
-                                [e].concat(
-                                    Array.prototype.slice.call(arguments, 0),
-                                ),
-                            );
-                        };
-                    }));
-                for (var i = 0; i < ttq.methods.length; i++)
-                    ttq.setAndDefer(ttq, ttq.methods[i]);
-                ((ttq.instance = function (t) {
-                    for (
-                        var e = ttq.methods[(i = 0)];
-                        i < ttq.methods.length;
-                        i++
-                    )
-                        ttq.setAndDefer(t, ttq.methods[i]);
-                    return t;
-                }),
-                    (ttq.load = function (e, n) {
-                        var i =
-                            "https://analytics.tiktok.com/i18n/pixel/events.js";
-                        ((ttq._i = ttq._i || {}),
-                            (ttq._i[e] = []),
-                            (ttq._i[e]._u = i),
-                            (ttq._t = ttq._t || {}),
-                            (ttq._t[e] = +new Date()),
-                            (ttq._o = ttq._o || {}),
-                            (ttq._o[e] = n || {}));
-                        var o = document.createElement("script");
-                        ((o.type = "text/javascript"),
-                            (o.async = !0),
-                            (o.src = i + "?sdkid=" + e + "&lib=" + t));
-                        var a = document.getElementsByTagName("script")[0];
-                        a.parentNode.insertBefore(o, a);
-                    }));
-                ttq.load(TIKTOK_PIXEL_ID);
-                ttq.page();
-            })(window, document, "ttq");
-        </script>
     </head>
     <body class="font-sans antialiased text-gray-900 bg-white">
         <!-- Sticky Header -->
@@ -221,9 +106,9 @@ const images = [
                                 fill="currentColor"></path>
                         </svg>
                     </div>
-                    <h2 class="text-lg font-bold tracking-tight text-gray-900">
+                    <div class="text-lg font-bold tracking-tight text-gray-900">
                         Plaza Comercial Puembo
-                    </h2>
+                    </div>
                 </div>
                 <nav class="hidden md:flex items-center gap-10">
                     <a
@@ -258,8 +143,10 @@ const images = [
                 <div class="absolute inset-0 z-0">
                     <img
                         src="/img/4locales.webp"
-                        alt="Oficinas de lujo en Puembo"
+                        alt="Locales comerciales de lujo en Puembo"
                         class="w-full h-full object-cover"
+                        loading="eager"
+                        fetchpriority="high"
                     />
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-transparent"
@@ -306,6 +193,7 @@ const images = [
                                     src="/img/local-1.webp"
                                     alt="Local Exterior"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                    loading="lazy"
                                 />
                             </div>
                             <div
@@ -315,6 +203,7 @@ const images = [
                                     src="/img/interior.webp"
                                     alt="Interior del local"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                    loading="lazy"
                                 />
                             </div>
                             <div
@@ -324,6 +213,7 @@ const images = [
                                     src="/img/map.webp"
                                     alt="Ubicación"
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                    loading="lazy"
                                 />
                             </div>
                         </div>
@@ -512,6 +402,7 @@ const images = [
                                             src={img.src}
                                             alt={img.alt}
                                             class="w-full h-full object-cover"
+                                            loading="lazy"
                                         />
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                             <p class="text-white text-lg font-medium">
@@ -798,7 +689,16 @@ const images = [
                             >
                                 Agenda tu Visita
                             </button>
-                            <p class="text-center text-xs text-gray-500">
+                            <p
+                                class="text-[10px] text-gray-500 mt-3 text-center leading-tight"
+                            >
+                                Al enviar este formulario, aceptas nuestra <a
+                                    href="/politica-de-privacidad"
+                                    class="underline hover:text-primary transition-colors"
+                                    >Política de Privacidad</a
+                                > y autorizas el contacto vía WhatsApp.
+                            </p>
+                            <p class="text-center text-xs text-gray-500 mt-4">
                                 Respondemos en menos de 24 horas hábiles.
                             </p>
                         </form>
@@ -823,21 +723,15 @@ const images = [
             © {new Date().getFullYear()} Desarrollado por HuvanaStudio. Todos los
             derechos reservados.<br />
             Quito, Ecuador.<br />
-            <a href="mailto:livefixec@gmail.com">livefixec@gmail.com</a>
-        </div>
-        <div class="flex gap-6">
+            <a href="mailto:huvanastudio@gmail.com">huvanastudio@gmail.com</a
+            ><br />
             <a
-                href="#"
-                class="text-gray-400 hover:text-primary transition-colors"
-                aria-label="Instagram"
+                href="/politica-de-privacidad"
+                class="hover:text-primary transition-colors"
+                >Política de Privacidad</a
             >
-                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"
-                    ><path
-                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                    ></path></svg
-                >
-            </a>
         </div>
+
         <!-- Modular Scripts -->
         <script>
             import { initGallerySlider } from "../scripts/gallerySlider.js";
