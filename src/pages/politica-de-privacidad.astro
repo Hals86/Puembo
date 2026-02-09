@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+// import "../styles/global.css";
 
 const SITE_TITLE = "Política de Privacidad | Plaza Comercial Puembo";
 const SITE_URL = "https://landing-locales.netlify.app";
@@ -12,8 +12,16 @@ const SITE_URL = "https://landing-locales.netlify.app";
         <meta name="viewport" content="width=device-width" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com https://maps.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://analytics.tiktok.com https://connect.facebook.net;"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com https://maps.google.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://analytics.tiktok.com https://connect.facebook.net;"
         />
+        <style>
+            @import "tailwindcss";
+            @theme {
+                --color-primary: #1e3a8a;
+                --color-background-light: #ffffff;
+                --color-background-dark: #030712;
+            }
+        </style>
         <title>{SITE_TITLE}</title>
         <meta
             name="description"
