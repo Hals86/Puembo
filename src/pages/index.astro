@@ -72,7 +72,7 @@ const images = [
                 --color-background-dark: #030712;
             }
         </style>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/img/logo-P-puembo.svg" />
         <meta name="generator" content={Astro.generator} />
 
         <!-- Geo Tags -->
@@ -832,18 +832,65 @@ const images = [
 
         <!-- Modular Scripts -->
         <script>
-            import { initGallerySlider } from "../scripts/gallerySlider.js";
+            // Critical tracking starts early but doesn't block
             import { initScrollTracking } from "../scripts/scrollTracking.js";
             import { initTracking } from "../scripts/tracking.js";
-            import { initFormValidation } from "../scripts/formValidation.js";
 
-            // Initialize modules
-            initGallerySlider();
             initScrollTracking();
             initTracking();
-            initFormValidation();
 
-            // Lazy Load Map
+            // Intersection Observer for non-critical features
+            const observerOptions = {
+                root: null,
+                rootMargin: "200px", // Start loading before it's visible
+                threshold: 0.01,
+            };
+
+            const featureObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (
+                            entry.isIntersecting &&
+                            entry.target instanceof HTMLElement
+                        ) {
+                            const feature = entry.target.dataset.feature;
+
+                            if (feature === "gallery") {
+                                import("../scripts/gallerySlider.js").then(
+                                    (module) => {
+                                        module.initGallerySlider();
+                                    },
+                                );
+                            } else if (feature === "form") {
+                                import("../scripts/formValidation.js").then(
+                                    (module) => {
+                                        module.initFormValidation();
+                                    },
+                                );
+                            }
+
+                            // Once loaded, stop observing this element
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                observerOptions,
+            );
+
+            // Select sections to observe
+            const gallerySection = document.getElementById("gallery");
+            const contactSection = document.getElementById("contacto");
+
+            if (gallerySection) {
+                gallerySection.dataset.feature = "gallery";
+                featureObserver.observe(gallerySection);
+            }
+            if (contactSection) {
+                contactSection.dataset.feature = "form";
+                featureObserver.observe(contactSection);
+            }
+
+            // Lazy Load Map (existing logic slightly refined)
             const mapContainer = document.getElementById("map-container");
             if (mapContainer) {
                 const loadMap = () => {
@@ -853,18 +900,6 @@ const images = [
                     mapContainer.removeEventListener("click", loadMap);
                 };
                 mapContainer.addEventListener("click", loadMap);
-
-                // Also load when scrolling near (optional, but good for UX)
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        if (entries[0].isIntersecting) {
-                            // We could auto-load here, but click is safer for Lighthouse "Initial" score.
-                            // Let's stick to click for now as per user preference for LCP/SI focus.
-                        }
-                    },
-                    { rootMargin: "100px" },
-                );
-                observer.observe(mapContainer);
             }
         </script>
     </body>
