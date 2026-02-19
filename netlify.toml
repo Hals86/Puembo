@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_GA4_ID"
