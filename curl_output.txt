@@ -1,0 +1,142 @@
+Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host script.google.com:443 was resolved.
+* IPv6: 2800:3f0:4005:404::200e
+* IPv4: 172.217.162.110
+*   Trying [2800:3f0:4005:404::200e]:443...
+* Connected to script.google.com (2800:3f0:4005:404::200e) port 443
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [322 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [15 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [6342 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [80 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / AEAD-AES256-GCM-SHA384 / [blank] / UNDEF
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.google.com
+*  start date: Jan 19 08:36:59 2026 GMT
+*  expire date: Apr 13 08:36:58 2026 GMT
+*  subjectAltName: host "script.google.com" matched cert's "*.google.com"
+*  issuer: C=US; O=Google Trust Services; CN=WR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://script.google.com/macros/s/AKfycby1GbMyruWNtZuuRmyPxGy32qx6hJ3JVgK5_SJPinMLwF4m4Gk6QyroUymOOsR2q4URgg/exec
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: script.google.com]
+* [HTTP/2] [1] [:path: /macros/s/AKfycby1GbMyruWNtZuuRmyPxGy32qx6hJ3JVgK5_SJPinMLwF4m4Gk6QyroUymOOsR2q4URgg/exec]
+* [HTTP/2] [1] [user-agent: curl/8.7.1]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [origin: https://landing-locales.netlify.app]
+* [HTTP/2] [1] [content-length: 64]
+* [HTTP/2] [1] [content-type: application/x-www-form-urlencoded]
+> POST /macros/s/AKfycby1GbMyruWNtZuuRmyPxGy32qx6hJ3JVgK5_SJPinMLwF4m4Gk6QyroUymOOsR2q4URgg/exec HTTP/2
+> Host: script.google.com
+> User-Agent: curl/8.7.1
+> Accept: */*
+> Origin: https://landing-locales.netlify.app
+> Content-Length: 64
+> Content-Type: application/x-www-form-urlencoded
+> 
+} [64 bytes data]
+* upload completely sent off: 64 bytes
+100    64    0     0  100    64      0     53  0:00:01  0:00:01 --:--:--    53< HTTP/2 302 
+< content-type: text/html; charset=UTF-8
+< access-control-allow-origin: *
+< cache-control: no-cache, no-store, max-age=0, must-revalidate
+< pragma: no-cache
+< expires: Mon, 01 Jan 1990 00:00:00 GMT
+< date: Tue, 10 Feb 2026 21:53:03 GMT
+* Need to rewind upload for next request
+< location: https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjo4e1LIAaQOwXPGyOvQRgqeHROdNnsMdgwJDjsoHvjwCm7RF6JEBURkcEUMbm5Xmk-LdYlbTqzFw34Z21NUZPkf8e-D8WbccaCookXMX6gZZxm78fBZ2Orph9I3jG52HWbIHwMGNM7aJU71e-LKP2DIxSgdfreMK4eaiJ_PS-Dj-5jPDEfIXJJEtT_VdmeE0bppJMfsjl0O9Eyz-JTHKVFoJqmFTJcTQeVXSdn0cQ44kVElYe4WgU5g2fa9G9_ZM9I6-yeoCwpWK9y6ORxC9Vy_3Dn2Dv6Eh06S_80&lib=MBxHuc4-vVI2OqAiceKG8al0GC1mDfS7k
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< content-security-policy: frame-ancestors 'self'
+< x-xss-protection: 1; mode=block
+< server: GSE
+< alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+< accept-ranges: none
+< vary: Accept-Encoding
+< 
+* Ignoring the response-body
+100   681    0   617  100    64    363     37  0:00:01  0:00:01 --:--:--   401
+* Connection #0 to host script.google.com left intact
+* Issue another request to this URL: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjo4e1LIAaQOwXPGyOvQRgqeHROdNnsMdgwJDjsoHvjwCm7RF6JEBURkcEUMbm5Xmk-LdYlbTqzFw34Z21NUZPkf8e-D8WbccaCookXMX6gZZxm78fBZ2Orph9I3jG52HWbIHwMGNM7aJU71e-LKP2DIxSgdfreMK4eaiJ_PS-Dj-5jPDEfIXJJEtT_VdmeE0bppJMfsjl0O9Eyz-JTHKVFoJqmFTJcTQeVXSdn0cQ44kVElYe4WgU5g2fa9G9_ZM9I6-yeoCwpWK9y6ORxC9Vy_3Dn2Dv6Eh06S_80&lib=MBxHuc4-vVI2OqAiceKG8al0GC1mDfS7k'
+* Switch from POST to GET
+* Host script.googleusercontent.com:443 was resolved.
+* IPv6: 2800:3f0:4005:418::2001
+* IPv4: 142.251.132.161
+*   Trying [2800:3f0:4005:418::2001]:443...
+* Connected to script.googleusercontent.com (2800:3f0:4005:418::2001) port 443
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [333 bytes data]
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0* (304) (IN), TLS handshake, Unknown (8):
+{ [15 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [9181 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [80 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / AEAD-AES256-GCM-SHA384 / [blank] / UNDEF
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.googleusercontent.com
+*  start date: Jan 19 08:38:14 2026 GMT
+*  expire date: Apr 13 08:38:13 2026 GMT
+*  subjectAltName: host "script.googleusercontent.com" matched cert's "*.googleusercontent.com"
+*  issuer: C=US; O=Google Trust Services; CN=WR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjo4e1LIAaQOwXPGyOvQRgqeHROdNnsMdgwJDjsoHvjwCm7RF6JEBURkcEUMbm5Xmk-LdYlbTqzFw34Z21NUZPkf8e-D8WbccaCookXMX6gZZxm78fBZ2Orph9I3jG52HWbIHwMGNM7aJU71e-LKP2DIxSgdfreMK4eaiJ_PS-Dj-5jPDEfIXJJEtT_VdmeE0bppJMfsjl0O9Eyz-JTHKVFoJqmFTJcTQeVXSdn0cQ44kVElYe4WgU5g2fa9G9_ZM9I6-yeoCwpWK9y6ORxC9Vy_3Dn2Dv6Eh06S_80&lib=MBxHuc4-vVI2OqAiceKG8al0GC1mDfS7k
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: script.googleusercontent.com]
+* [HTTP/2] [1] [:path: /macros/echo?user_content_key=AehSKLjo4e1LIAaQOwXPGyOvQRgqeHROdNnsMdgwJDjsoHvjwCm7RF6JEBURkcEUMbm5Xmk-LdYlbTqzFw34Z21NUZPkf8e-D8WbccaCookXMX6gZZxm78fBZ2Orph9I3jG52HWbIHwMGNM7aJU71e-LKP2DIxSgdfreMK4eaiJ_PS-Dj-5jPDEfIXJJEtT_VdmeE0bppJMfsjl0O9Eyz-JTHKVFoJqmFTJcTQeVXSdn0cQ44kVElYe4WgU5g2fa9G9_ZM9I6-yeoCwpWK9y6ORxC9Vy_3Dn2Dv6Eh06S_80&lib=MBxHuc4-vVI2OqAiceKG8al0GC1mDfS7k]
+* [HTTP/2] [1] [user-agent: curl/8.7.1]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [origin: https://landing-locales.netlify.app]
+> POST /macros/echo?user_content_key=AehSKLjo4e1LIAaQOwXPGyOvQRgqeHROdNnsMdgwJDjsoHvjwCm7RF6JEBURkcEUMbm5Xmk-LdYlbTqzFw34Z21NUZPkf8e-D8WbccaCookXMX6gZZxm78fBZ2Orph9I3jG52HWbIHwMGNM7aJU71e-LKP2DIxSgdfreMK4eaiJ_PS-Dj-5jPDEfIXJJEtT_VdmeE0bppJMfsjl0O9Eyz-JTHKVFoJqmFTJcTQeVXSdn0cQ44kVElYe4WgU5g2fa9G9_ZM9I6-yeoCwpWK9y6ORxC9Vy_3Dn2Dv6Eh06S_80&lib=MBxHuc4-vVI2OqAiceKG8al0GC1mDfS7k HTTP/2
+> Host: script.googleusercontent.com
+> User-Agent: curl/8.7.1
+> Accept: */*
+> Origin: https://landing-locales.netlify.app
+> 
+* Request completely sent off
+< HTTP/2 405 
+< cache-control: no-cache, no-store, max-age=0, must-revalidate
+< pragma: no-cache
+< expires: Mon, 01 Jan 1990 00:00:00 GMT
+< date: Tue, 10 Feb 2026 21:53:04 GMT
+< content-type: text/html; charset=utf-8
+< referrer-policy: origin
+< allow: HEAD, GET
+< x-content-type-options: nosniff
+< x-xss-protection: 1; mode=block
+< server: GSE
+< alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+< accept-ranges: none
+< vary: Accept-Encoding
+< 
+{ [1177 bytes data]
+100  3116    0  3116    0     0   1334      0 --:--:--  0:00:02 --:--:--  5696
+* Connection #1 to host script.googleusercontent.com left intact
+<!DOCTYPE html><html lang="es"><head><meta name="description" content="Procesamiento de textos, presentaciones y hojas de cálculo en la Web"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"><link rel="shortcut icon" href="//docs.google.com/favicon.ico"><title>No se encontró la página</title><meta name="referrer" content="origin"><link href="//fonts.googleapis.com/css?family=Product+Sans" rel="stylesheet" type="text/css" nonce="8Bzohv1CJ-QnpLKoHSHyMw"><style nonce="8Bzohv1CJ-QnpLKoHSHyMw">.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}* html .goog-inline-block{display:inline}*:first-child+html .goog-inline-block{display:inline}#drive-logo{margin:18px 0;position:absolute;white-space:nowrap}.docs-drivelogo-img{background-image:url(//ssl.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_116x41dp.png);-webkit-background-size:116px 41px;background-size:116px 41px;display:inline-block;height:41px;vertical-align:bottom;width:116px}.docs-drivelogo-text{color:#000;display:inline-block;opacity:.54;text-decoration:none;font-family:"Product Sans",Arial,Helvetica,sans-serif;font-size:32px;text-rendering:optimizeLegibility;position:relative;top:-6px;left:-7px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){.docs-drivelogo-img{background-image:url(//ssl.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_116x41dp.png)}}sentinel{}</style><style type="text/css" nonce="8Bzohv1CJ-QnpLKoHSHyMw">body {background-color: #fff; font-family: Arial,sans-serif; font-size: 13px; margin: 0; padding: 0;}a, a:link, a:visited {color: #112ABB;}</style><style type="text/css" nonce="8Bzohv1CJ-QnpLKoHSHyMw">.errorMessage {font-size: 12pt; font-weight: bold; line-height: 150%;}</style></head><body><div id="outerContainer"><div id="innerContainer"><div style="position: absolute; top: -80px;"><div id="drive-logo"><a href="/"><span class="docs-drivelogo-img" title="Logotipo de Google"></span><span class="docs-drivelogo-text">&nbsp;Drive</span></a></div></div><div align="center"><p class="errorMessage" style="padding-top: 50px">No se pudo abrir el archivo en este momento.</p><p> Verifica la dirección e inténtalo de nuevo.</p><div style="background: #F0F6FF; border: 1px solid black; margin-top: 35px; padding: 10px 125px; width: 300px;"><p><strong>Realiza tus proyectos con Google Drive</strong></p><p>Las aplicaciones de Google Drive te facilitan la tarea de crear, almacenar y compartir documentos, hojas de cálculo, presentaciones y otros archivos en línea.</p><p>Obtén más información en <a href="https://drive.google.com/start/apps">drive.google.com/start/apps</a>.</p></div></div></div></div></body><style nonce="8Bzohv1CJ-QnpLKoHSHyMw">html {height: 100%; overflow: auto;}body {height: 100%; overflow: auto;}#outerContainer {margin: auto; max-width: 750px;}#innerContainer {margin-bottom: 20px; margin-left: 40px; margin-right: 40px; margin-top: 80px; position: relative;}</style></html>

@@ -4,17 +4,8 @@ export function initTracking() {
     const TIKTOK_ID = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
 
     // --- Google Analytics 4 ---
-    if (GA_ID) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-        document.head.appendChild(script);
-
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', GA_ID);
-    }
+    // Moved to index.astro head with is:inline for better performance and reliability.
+    // Logic here is removed to avoid double tracking.
 
     // --- Meta & TikTok Pixels (Delayed for Performance) ---
     // These are secondary trackers and should not block the initial LCP render.

@@ -105,6 +105,9 @@ export function initFormValidation() {
             whatsapp
         };
 
+        // 📊 Log to Google Sheets (Non-blocking background call)
+        sendToGoogleSheets(data);
+
         // Construct & Redirect via WhatsApp
         // We do this immediately if budget is OK, avoiding flashing issues
         sendWhatsAppMessage(data);
@@ -114,6 +117,39 @@ export function initFormValidation() {
             resetSubmission();
         }, 2000);
     });
+
+    /**
+     * Sends form data to Google Sheets via Apps Script Web App
+     * Uses FormData and fails silently to avoid blocking UX
+     */
+    async function sendToGoogleSheets(data) {
+        const scriptURL = import.meta.env.PUBLIC_GOOGLE_SHEETS_URL;
+
+        console.log("Sheets URL from env:", scriptURL);
+
+        if (!scriptURL) {
+            console.error("Google Sheets URL not found in environment variables.");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("company", data.company);
+            formData.append("business_type", data.businessType);
+            formData.append("budget", data.budget);
+            formData.append("whatsapp", data.whatsapp);
+
+            // Using mode: "no-cors" is recommended for Google Apps Script POSTs 
+            // to avoid CORS preflight issues while still sending the data.
+            await fetch(scriptURL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            });
+        } catch (error) {
+            console.error("Error sending to Google Sheets:", error);
+        }
+    }
 
     function resetSubmission() {
         isSubmitting = false;

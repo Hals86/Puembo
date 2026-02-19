@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    title: string;
+    description: string;
+    schema?: any;
+}
+
+const { title, description, schema } = Astro.props;
+const SITE_URL = "https://landing-locales.netlify.app";
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+    <head>
+        <!-- Google Analytics 4 (is:inline) -->
+        <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_ID}`}
+        ></script>
+        <script is:inline define:vars={{ GA_ID: import.meta.env.PUBLIC_GA4_ID }}
+        >
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", GA_ID);
+        </script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self';
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net;
+    frame-src https://www.google.com https://maps.google.com;
+    font-src 'self';
+    connect-src 'self'
+      https://script.google.com
+      https://script.googleusercontent.com
+      https://www.google-analytics.com
+      https://stats.g.doubleclick.net
+      https://analytics.tiktok.com
+      https://connect.facebook.net;"
+        />
+
+        <style>
+            @import "tailwindcss";
+            @theme {
+                --color-primary: #1e3a8a;
+                --color-background-light: #ffffff;
+                --color-background-dark: #030712;
+            }
+        </style>
+        <link rel="icon" type="image/svg+xml" href="/img/logo-P-puembo.svg" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Geo Tags -->
+        <meta name="geo.region" content="EC-P" />
+        <meta name="geo.placename" content="Puembo" />
+        <meta
+            name="geo.position"
+            content="-0.1784554360455434;-78.35922839796994"
+        />
+        <meta name="ICBM" content="-0.1784554360455434, -78.35922839796994" />
+
+        <!-- SEO -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={SITE_URL} />
+        <meta name="robots" content="index, follow" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={`${SITE_URL}/img/4locales.webp`} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={SITE_URL} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta
+            property="twitter:image"
+            content={`${SITE_URL}/img/4locales.webp`}
+        />
+
+        <!-- JSON-LD Schema -->
+        {
+            schema && (
+                <script
+                    type="application/ld+json"
+                    set:html={JSON.stringify(schema)}
+                />
+            )
+        }
+
+        <!-- Performance Hints -->
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://analytics.tiktok.com" />
+    </head>
+    <body class="font-sans antialiased text-gray-900 bg-white">
+        <slot />
+
+        <footer class="bg-gray-50 py-12 border-t border-gray-200">
+            <div
+                class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"
+            >
+                <div class="flex items-center gap-2">
+                    <span class="text-primary font-bold text-xs tracking-widest"
+                        >* El sistema de videovigilancia se implementará
+                        próximamente</span
+                    >
+                </div>
+            </div>
+        </footer>
+        <div class="text-sm text-gray-500 text-center pb-12">
+            © {new Date().getFullYear()} Desarrollado por HuvanaStudio. Todos los
+            derechos reservados.<br />
+            Quito, Ecuador.<br />
+            <a href="mailto:huvanastudio@gmail.com">huvanastudio@gmail.com</a
+            ><br />
+            <a
+                href="/politica-de-privacidad"
+                class="hover:text-primary transition-colors"
+                >Política de Privacidad</a
+            >
+        </div>
+    </body>
+</html>
