@@ -146,6 +146,9 @@ export function initFormValidation() {
                 body: formData,
                 mode: "no-cors"
             });
+
+            // Redirect to thank you page on success
+            window.location.href = "/gracias";
         } catch (error) {
             console.error("Error sending to Google Sheets:", error);
         }

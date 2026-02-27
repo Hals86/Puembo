@@ -4,7 +4,7 @@
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="512px" height="512px" viewBox="0 0 1000 1000"
  preserveAspectRatio="xMidYMid meet">
-<rect width="1000" height="1000" fill="white" />
+<!-- Removed white background rect -->
 <g transform="translate(-390.94, 962.78) scale(0.12, -0.12)">
 
 

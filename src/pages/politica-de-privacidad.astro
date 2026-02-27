@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import logoImage from "../../public/img/logo-P-puembo.svg";
 
 const SITE_TITLE = "Política de Privacidad | Plaza Comercial Puembo";
 const SITE_DESCRIPTION =
@@ -19,16 +21,12 @@ const SITE_DESCRIPTION =
                 class="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
                 <div class="text-primary">
-                    <svg
-                        class="size-8"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
-                            fill="currentColor"></path>
-                    </svg>
+                    <Image
+                        src={logoImage}
+                        alt="Logo Plaza Comercial Puembo"
+                        class="size-8 object-contain"
+                        loading="eager"
+                    />
                 </div>
                 <div class="text-lg font-bold tracking-tight text-gray-900">
                     Plaza Comercial Puembo
