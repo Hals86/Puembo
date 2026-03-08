@@ -704,6 +704,19 @@ const images = [
                                 placeholder="0999999999"
                             />
                         </div>
+                        {
+                            /* Honeypot field - Hidden from users, filled by bots */
+                        }
+                        <div style="display:none">
+                            <label for="website">Website</label>
+                            <input
+                                type="text"
+                                id="website"
+                                name="website"
+                                tabindex="-1"
+                                autocomplete="off"
+                            />
+                        </div>
                         <button
                             type="submit"
                             class="w-full h-14 bg-primary text-white text-lg font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-primary/20"

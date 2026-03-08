@@ -17,6 +17,23 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
 <!doctype html>
 <html lang="es" class="scroll-smooth">
     <head>
+        <!-- Google Tag Manager -->
+        <script is:inline>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-M9XXLLXM");
+        </script>
+        <!-- End Google Tag Manager -->
         <!-- Google Analytics 4 (is:inline) -->
         <script
             is:inline
@@ -41,11 +58,9 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' data: https:;
-    frame-src https://www.google.com https://maps.google.com;
+    frame-src https://www.google.com https://maps.google.com https://www.googletagmanager.com;
     font-src 'self';
     connect-src 'self'
-      https://script.google.com
-      https://script.googleusercontent.com
       https://www.google-analytics.com
       https://stats.g.doubleclick.net
       https://analytics.tiktok.com
@@ -105,6 +120,15 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
         <link rel="preconnect" href="https://analytics.tiktok.com" />
     </head>
     <body class="font-sans antialiased text-gray-900 bg-white">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M9XXLLXM"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe></noscript
+        >
+        <!-- End Google Tag Manager (noscript) -->
         <slot />
 
         <footer class="bg-gray-50 py-12 border-t border-gray-200">
