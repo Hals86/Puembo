@@ -11,7 +11,7 @@ export function initFormValidation() {
     // DEBUG MODE - Set to false in production
     const DEBUG_MODE = false;
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         // Stop default immediately to control the flow
         e.preventDefault();
 
@@ -105,12 +105,23 @@ export function initFormValidation() {
             whatsapp
         };
 
-        // 📊 Log to Google Sheets (Non-blocking background call)
-        sendToGoogleSheets(data);
+        // 📊 Log to Astro DB
+        const result = await sendToAstroDB(data);
 
-        // Construct & Redirect via WhatsApp
-        // We do this immediately if budget is OK, avoiding flashing issues
-        sendWhatsAppMessage(data);
+        if (result.success) {
+            // Construct & Redirect via WhatsApp
+            sendWhatsAppMessage(data);
+
+            // Redirect to thank you page
+            setTimeout(() => {
+                window.location.href = "/gracias";
+            }, 1000);
+        } else {
+            console.error("Error al guardar en BD:", result.error);
+            // Si falla la BD, igual intentamos WhatsApp para no perder el lead
+            sendWhatsAppMessage(data);
+            alert("Hubo un pequeño error al guardar tus datos, pero ya te estamos redirigiendo a WhatsApp.");
+        }
 
         // Wait a bit before resetting button state
         setTimeout(() => {
@@ -119,38 +130,28 @@ export function initFormValidation() {
     });
 
     /**
-     * Sends form data to Google Sheets via Apps Script Web App
-     * Uses FormData and fails silently to avoid blocking UX
+     * Sends form data to Astro DB via Actions
      */
-    async function sendToGoogleSheets(data) {
-        const scriptURL = import.meta.env.PUBLIC_GOOGLE_SHEETS_URL;
-
-        console.log("Sheets URL from env:", scriptURL);
-
-        if (!scriptURL) {
-            console.error("Google Sheets URL not found in environment variables.");
-            return;
-        }
-
+    async function sendToAstroDB(data) {
         try {
+            const { actions } = await import('astro:actions');
+
+            // Adaptar los nombres de los campos a lo que espera la Acción
             const formData = new FormData();
             formData.append("company", data.company);
             formData.append("business_type", data.businessType);
             formData.append("budget", data.budget);
             formData.append("whatsapp", data.whatsapp);
 
-            // Using mode: "no-cors" is recommended for Google Apps Script POSTs 
-            // to avoid CORS preflight issues while still sending the data.
-            await fetch(scriptURL, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            });
+            const { data: response, error } = await actions.submitLead(formData);
 
-            // Redirect to thank you page on success
-            window.location.href = "/gracias";
+            if (error) {
+                return { success: false, error };
+            }
+            return { success: true, response };
         } catch (error) {
-            console.error("Error sending to Google Sheets:", error);
+            console.error("Error sending to Astro DB:", error);
+            return { success: false, error };
         }
     }
 
