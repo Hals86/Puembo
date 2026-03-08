@@ -24,7 +24,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => page !== 'https://plazapuembo.com/gracias/' && page !== 'https://plazapuembo.com/gracias'
+      filter: (/** @type {string} */ page) =>
+        !page.includes('/gracias') &&
+        !page.includes('/admin-leads')
     }),
     db()
   ],
