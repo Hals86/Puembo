@@ -33,13 +33,19 @@ const SITE_URL = "https://landing-locales.netlify.app";
             })(window, document, "script", "dataLayer", "GTM-M9XXLLXM");
         </script>
         <!-- End Google Tag Manager -->
-        <!-- Google Analytics 4 (is:inline) -->
+        <!-- Google Ads & Analytics (gtag.js) -->
         <script
             is:inline
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_ID}`}
         ></script>
-        <script is:inline define:vars={{ GA_ID: import.meta.env.PUBLIC_GA4_ID }}
+        <script
+            is:inline
+            define:vars={{
+                GA_ID: import.meta.env.PUBLIC_GA4_ID,
+                ADS_ID: import.meta.env.PUBLIC_GOOGLE_ADS_ID,
+                TAG_ID: import.meta.env.PUBLIC_GOOGLE_ADS_TAG_ID,
+            }}
         >
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -47,6 +53,8 @@ const SITE_URL = "https://landing-locales.netlify.app";
             }
             gtag("js", new Date());
             gtag("config", GA_ID);
+            if (ADS_ID) gtag("config", ADS_ID);
+            if (TAG_ID) gtag("config", TAG_ID);
         </script>
 
         <meta charset="UTF-8" />
