@@ -109,6 +109,13 @@ export function initFormValidation() {
         const result = await sendToAstroDB(data);
 
         if (result.success) {
+            // 🎯 GA4 Event for imported Ads Conversion (Server-confirmed success)
+            if (typeof window !== "undefined" && typeof window.gtag === "function") {
+                window.gtag("event", "ads_conversion_Formulario_1", {
+                    send_to: import.meta.env.PUBLIC_GA4_ID,
+                });
+            }
+
             // Construct & Redirect via WhatsApp
             sendWhatsAppMessage(data);
 
