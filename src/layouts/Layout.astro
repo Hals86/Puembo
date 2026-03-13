@@ -63,13 +63,18 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
         <meta
             http-equiv="Content-Security-Policy"
             content="default-src 'self';
-    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://analytics.tiktok.com;
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://connect.facebook.net https://analytics.tiktok.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' data: https:;
-    frame-src https://www.google.com https://maps.google.com https://www.googletagmanager.com;
+    img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google.com https://www.google.ec https://google.com https://connect.facebook.net;
+    frame-src 'self' https://www.google.com https://maps.google.com https://www.googletagmanager.com https://*.googletagmanager.com;
     font-src 'self';
     connect-src 'self'
       https://www.google-analytics.com
+      https://*.google-analytics.com
+      https://*.analytics.google.com
+      https://*.googletagmanager.com
+      https://www.googletagmanager.com
+      https://*.g.doubleclick.net
       https://stats.g.doubleclick.net
       https://analytics.tiktok.com
       https://connect.facebook.net;"
