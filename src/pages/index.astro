@@ -12,7 +12,6 @@ import logoImage from "../../public/img/logo-P-puembo.svg";
 import Layout from "../layouts/Layout.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 
-
 // Configuration
 const SITE_TITLE =
     "Locales comerciales en Arriendo en Puembo | Cerca del Parque Central";
@@ -131,9 +130,9 @@ const images = [
                     <h1
                         class="text-5xl md:text-6xl font-bold leading-tight mb-6 tracking-tight"
                     >
-                        Locales Comerciales en Puembo - Desde $550*
+                        Locales Comerciales en Puembo
                         <div class="text-sm">
-                            <span class="text-sm">*Precio de lanzamiento</span>
+                            <span class="text-sm">*Desde (60mts)</span>
                         </div>
                     </h1>
                     <p
@@ -675,14 +674,14 @@ const images = [
                                     name="budget"
                                     class="w-full h-12 px-4 rounded-lg border-gray-200 bg-transparent focus:ring-primary focus:border-primary text-gray-900"
                                 >
-                                    <option value="Menor a 500"
-                                        >Menor a $500</option
+                                    <option value="Menor a 400"
+                                        >Menor a $400</option
                                     >
-                                    <option value="500-700"
-                                        >$500-$700(60MTS)</option
+                                    <option value="400-600"
+                                        >$400-$600(60MTS)</option
                                     >
-                                    <option value="Mayor a 700"
-                                        >Mayor a $700(120MTS)</option
+                                    <option value="Mayor a 600"
+                                        >Mayor a $600(120MTS)</option
                                     >
                                 </select>
                             </div>
@@ -746,7 +745,6 @@ const images = [
         </section>
         <WhatsAppButton phoneNumber={WHATSAPP_NUMBER} />
     </main>
-
 
     <!-- Modular Scripts -->
     <script>
