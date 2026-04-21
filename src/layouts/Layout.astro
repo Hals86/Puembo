@@ -20,7 +20,9 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
         <!-- Google Tag Manager -->
         <script is:inline>
             (function (w, d, s, l, i) {
+                // @ts-ignore
                 w[l] = w[l] || [];
+                // @ts-ignore
                 w[l].push({
                     "gtm.start": new Date().getTime(),
                     event: "gtm.js",
@@ -28,9 +30,13 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
                 var f = d.getElementsByTagName(s)[0],
                     j = d.createElement(s),
                     dl = l != "dataLayer" ? "&l=" + l : "";
-                j.async = true;
-                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                f.parentNode.insertBefore(j, f);
+                if (j instanceof HTMLScriptElement) {
+                    j.async = true;
+                    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                }
+                if (f && f.parentNode) {
+                    f.parentNode.insertBefore(j, f);
+                }
             })(window, document, "script", "dataLayer", "GTM-M9XXLLXM");
         </script>
         <!-- End Google Tag Manager -->
@@ -62,22 +68,37 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
         <meta name="viewport" content="width=device-width" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self';
-    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://connect.facebook.net https://analytics.tiktok.com;
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google.com https://www.google.ec https://google.com https://connect.facebook.net;
-    frame-src 'self' https://www.google.com https://maps.google.com https://www.googletagmanager.com https://*.googletagmanager.com;
-    font-src 'self';
-    connect-src 'self'
-      https://www.google-analytics.com
-      https://*.google-analytics.com
-      https://*.analytics.google.com
-      https://*.googletagmanager.com
-      https://www.googletagmanager.com
-      https://*.g.doubleclick.net
-      https://stats.g.doubleclick.net
-      https://analytics.tiktok.com
-      https://connect.facebook.net;"
+            content="
+default-src 'self';
+script-src 'self' 'unsafe-inline' 'unsafe-eval'
+  https://www.googletagmanager.com
+  https://*.googletagmanager.com
+  https://www.google-analytics.com
+  https://*.google-analytics.com
+  https://www.googleadservices.com
+  https://*.g.doubleclick.net;
+
+img-src 'self' data:
+  https://www.google-analytics.com
+  https://*.google-analytics.com
+  https://*.googletagmanager.com
+  https://*.g.doubleclick.net;
+
+connect-src 'self'
+  https://www.google-analytics.com
+  https://*.google-analytics.com
+  https://*.analytics.google.com
+  https://*.googletagmanager.com
+  https://www.googletagmanager.com
+  https://*.g.doubleclick.net
+  https://stats.g.doubleclick.net;
+
+frame-src 'self'
+  https://www.googletagmanager.com;
+
+style-src 'self' 'unsafe-inline';
+font-src 'self';
+"
         />
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
