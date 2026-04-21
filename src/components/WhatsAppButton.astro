@@ -6,7 +6,7 @@ interface Props {
 
 const {
     phoneNumber,
-    message = "Hola, me gustaría recibir más información sobre los locales comerciales en Puembo.",
+    message = "Hola, estoy interesado en alquilar un local en Puembo. Vi la información en la web",
 } = Astro.props;
 
 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -18,12 +18,19 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
     rel="noopener noreferrer"
     class="whatsapp-float group"
     onclick="
-        event.preventDefault();
-        dataLayer.push({event: 'whatsapp_click'});
-        setTimeout(() => {
-            window.open(this.href, '_blank');
-        }, 300);
-    "
+event.preventDefault();
+
+dataLayer.push({
+  event: 'whatsapp_click',
+  source: 'whatsapp_button',
+  page: window.location.pathname,
+  intent: 'lead'
+});
+
+setTimeout(() => {
+  window.open(this.href, '_blank');
+}, 300);
+"
 >
     <!-- Notification Badge -->
     <span class="notification-badge">1</span>
