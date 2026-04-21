@@ -20,9 +20,7 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
         <!-- Google Tag Manager -->
         <script is:inline>
             (function (w, d, s, l, i) {
-                // @ts-ignore
                 w[l] = w[l] || [];
-                // @ts-ignore
                 w[l].push({
                     "gtm.start": new Date().getTime(),
                     event: "gtm.js",
@@ -40,29 +38,6 @@ const ogImageURL = new URL("/img/4locales.webp", Astro.site);
             })(window, document, "script", "dataLayer", "GTM-M9XXLLXM");
         </script>
         <!-- End Google Tag Manager -->
-        <!-- Google Ads & Analytics (gtag.js) -->
-        <script
-            is:inline
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ADS_ID}`}
-        ></script>
-        <script
-            is:inline
-            define:vars={{
-                GA_ID: import.meta.env.PUBLIC_GA4_ID,
-                ADS_ID: import.meta.env.PUBLIC_GOOGLE_ADS_ID,
-                TAG_ID: import.meta.env.PUBLIC_GOOGLE_ADS_TAG_ID,
-            }}
-        >
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", GA_ID);
-            if (ADS_ID) gtag("config", ADS_ID);
-            if (TAG_ID) gtag("config", TAG_ID);
-        </script>
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -76,13 +51,19 @@ script-src 'self' 'unsafe-inline' 'unsafe-eval'
   https://www.google-analytics.com
   https://*.google-analytics.com
   https://www.googleadservices.com
+  https://*.googleadservices.com
+  https://googleads.g.doubleclick.net
   https://*.g.doubleclick.net;
 
 img-src 'self' data:
   https://www.google-analytics.com
   https://*.google-analytics.com
   https://*.googletagmanager.com
-  https://*.g.doubleclick.net;
+  https://googleads.g.doubleclick.net
+  https://*.g.doubleclick.net
+  https://*.google.com
+  https://*.google.com.ec
+  https://*.google.es;
 
 connect-src 'self'
   https://www.google-analytics.com
@@ -91,10 +72,15 @@ connect-src 'self'
   https://*.googletagmanager.com
   https://www.googletagmanager.com
   https://*.g.doubleclick.net
-  https://stats.g.doubleclick.net;
+  https://googleads.g.doubleclick.net
+  https://stats.g.doubleclick.net
+  https://*.google.com
+  https://*.google.com.ec;
 
 frame-src 'self'
-  https://www.googletagmanager.com;
+  https://www.googletagmanager.com
+  https://td.doubleclick.net
+  https://*.g.doubleclick.net;
 
 style-src 'self' 'unsafe-inline';
 font-src 'self';
@@ -150,18 +136,19 @@ font-src 'self';
 
         <!-- Performance Hints -->
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="preconnect" href="https://analytics.tiktok.com" />
     </head>
     <body class="font-sans antialiased text-gray-900 bg-white">
         <!-- Google Tag Manager (noscript) -->
-        <noscript
-            ><iframe
+        <noscript>
+            <iframe
                 src="https://www.googletagmanager.com/ns.html?id=GTM-M9XXLLXM"
                 height="0"
                 width="0"
-                style="display:none;visibility:hidden"></iframe></noscript
-        >
+                style="display:none;visibility:hidden"></iframe>
+        </noscript>
         <!-- End Google Tag Manager (noscript) -->
         <slot />
 
@@ -181,8 +168,7 @@ font-src 'self';
             © {new Date().getFullYear()} Desarrollado por HuvanaStudio. Todos los
             derechos reservados.<br />
             Quito, Ecuador.<br />
-            <a href="mailto:huvanastudio@gmail.com">huvanastudio@gmail.com</a
-            ><br />
+            <a href="mailto:huvanastudio@gmail.com">huvanastudio@gmail.com</a><br />
             <a
                 href="/politica-de-privacidad"
                 class="hover:text-primary transition-colors"
