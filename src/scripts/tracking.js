@@ -102,15 +102,34 @@ export function initTracking() {
         }
     }, 2000);
 
-    // WhatsApp Click Tracking
-    document.querySelectorAll(".cta-whatsapp").forEach((button) => {
-        button.addEventListener("click", () => {
+    // Global WhatsApp Click Tracking
+    document.addEventListener("click", (e) => {
+        const target = e.target;
+        if (!(target instanceof HTMLElement)) return;
+        const link = target.closest("a");
+        if (!link) return;
+
+        const href = link.getAttribute("href") || "";
+        if (href.includes("wa.me") || href.includes("api.whatsapp.com")) {
+            // 1. Google Tag Manager Event
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "whatsapp_click",
+                link_url: href,
+            });
+
+            // 2. Meta Pixel (Contact)
             if (typeof window.fbq === "function") {
                 window.fbq("track", "Contact");
             }
-            if (typeof window.ttq === "function" && typeof window.ttq.track === "function") {
+
+            // 3. TikTok Pixel (ClickButton)
+            if (
+                typeof window.ttq === "function" &&
+                typeof window.ttq.track === "function"
+            ) {
                 window.ttq.track("ClickButton");
             }
-        });
+        }
     });
 }
