@@ -104,9 +104,7 @@ export function initTracking() {
 
     // Global WhatsApp Click Tracking
     document.addEventListener("click", (e) => {
-        const target = e.target;
-        if (!(target instanceof HTMLElement)) return;
-        const link = target.closest("a");
+        const link = e.target.closest("a");
         if (!link) return;
 
         const href = link.getAttribute("href") || "";
